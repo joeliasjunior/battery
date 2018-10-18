@@ -1,8 +1,8 @@
-18:47:44 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+18:29:27 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
 make MODE=debug CONFIGNAME=gcc-debug -j4 all 
 cd src && make
-make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/energy/inet-framework-simulte-afd56c4/src'
-make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/energy/inet-framework-simulte-afd56c4/src'
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
 
-18:47:44 Build Finished (took 383ms)
+18:29:28 Build Finished (took 373ms)
 

@@ -16,11 +16,16 @@ import inet.mobility.contract.IMobility;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.contract.IRoutingTable;
 import inet.networklayer.contract.INetworkLayer;
+import inet.physicallayer.energyconsumer.StateBasedEnergyConsumer;
 import inet.transportlayer.tcp.TCP;
 import inet.transportlayer.udp.UDP;
 import lte.stack.phy.LteNicUe;
 import lte.stack.phy.LteNicUeD2D;
-
+//JINSERT
+import inet.power.contract.IEnergyStorage; 
+import inet.power.contract.IEnergyGenerator; 
+import inet.common.lifecycle.NodeStatus; 
+//JINSERT
 // 
 // User Equipment Module
 //
@@ -42,7 +47,7 @@ module Ue
         int masterId;
         int macNodeId = default(0); // TODO: this is not a real parameter
         int macCellId = default(0); // TODO: this is not a real parameter
-        
+
         //# D2D capability
         bool d2dCapable = default(false);
 
@@ -51,6 +56,12 @@ module Ue
         string routingTableType = default("IPv4RoutingTable");
         *.interfaceTableModule = default(absPath(".interfaceTable"));
         *.routingTableModule = default(absPath(".routingTable"));
+
+		//# JINSERT
+		bool hasStatus = default(false);
+		string energyStorageType = default("");
+        string energyGeneratorType = default("");
+        *.energySourceModule = default(energyStorageType != "" ? absPath(".energyStorage") : "");
 
     gates:
         input radioIn @directIn;     // connection to master
@@ -95,6 +106,19 @@ module Ue
         networkLayer: <networkLayerType> like INetworkLayer {
             parameters:
                 @display("p=250,258");
+        }
+        // //JINSERT 
+
+        status: NodeStatus if hasStatus {
+            @display("p=49.068,225.504");
+        }
+        energyStorage: <energyStorageType> like IEnergyStorage if energyStorageType != "" {
+            parameters:
+                @display("p=49.068,335.124;i=block/plug;is=s");
+        }
+        energyGenerator: <energyGeneratorType> like IEnergyGenerator if energyGeneratorType != "" {
+            parameters:
+                @display("p=49.068,280.836;i=block/plug;is=s");
         }
     connections allowunconnected:
         //# 

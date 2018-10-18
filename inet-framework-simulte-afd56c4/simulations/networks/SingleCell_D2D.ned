@@ -20,6 +20,8 @@ import lte.corenetwork.nodes.Ue;
 import lte.corenetwork.nodes.eNodeB;
 import lte.world.radio.LteChannelControl;
 import lte.epc.PgwStandardSimplified;
+import inet.common.lifecycle.LifecycleController; //JINSERT
+
 
 
 network SingleCell_D2D
@@ -64,6 +66,11 @@ network SingleCell_D2D
         }
         ueD2DRx[numUeD2DRx]: Ue {
             @display("p=544,299");
+        }
+        // JINSERT
+        lifecycleController: LifecycleController {
+            parameters:
+                @display("p=49.75,237.55624");
         }
     connections:
         server.pppg++ <--> Eth10G <--> router.pppg++;

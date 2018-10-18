@@ -1370,3 +1370,103 @@ make MODE=debug CONFIGNAME=gcc-debug -j4 all
 cd src && make
 make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/energy/inet-framework-simulte-afd56c4/src'
 make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/energy/inet-framework-simulte-afd56c4/src'
+17:08:01 **** Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+17:08:15 **** Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+17:10:26 **** Incremental Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+17:10:28 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+17:12:33 **** Incremental Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+17:12:34 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+17:27:55 **** Incremental Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+17:27:57 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+17:50:39 **** Incremental Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+17:50:40 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+18:06:26 **** Incremental Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+18:06:28 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+18:19:10 **** Incremental Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+18:19:11 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+18:19:54 **** Incremental Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+18:19:55 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+18:25:03 **** Incremental Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+18:25:04 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+18:29:26 **** Incremental Build of configuration gcc-debug for project inet ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make all
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src'
+18:29:27 **** Incremental Build of configuration gcc-debug for project inet-framework-simulte-afd56c4 ****
+make MODE=debug CONFIGNAME=gcc-debug -j4 all 
+cd src && make
+make[1]: Entering directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
+make[1]: Leaving directory '/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src'
