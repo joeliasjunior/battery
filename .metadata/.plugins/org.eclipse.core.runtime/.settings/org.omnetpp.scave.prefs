@@ -1,0 +1,17 @@
+DataTable.HISTOGRAM.Module.width=249
+DataTable.HISTOGRAM.Name.width=191
+DataTable.HISTOGRAM.Variance.width=608
+DataTable.SCALAR.Module.width=230
+DataTable.SCALAR.Name.width=298
+DataTable.SCALAR.Run\ id.width=272
+DataTable.SCALAR.Value.width=497
+DataTable.VECTOR.Config\ name.width=133
+DataTable.VECTOR.File\ name.width=46
+DataTable.VECTOR.Folder.width=123
+DataTable.VECTOR.Mean.width=78
+DataTable.VECTOR.Module.width=258
+DataTable.VECTOR.Name.width=361
+DataTable.VECTOR.Run\ id.width=66
+DataTable.VECTOR.Run\ number.width=42
+DataTable.VECTOR.Variance.width=212
+eclipse.preferences.version=1

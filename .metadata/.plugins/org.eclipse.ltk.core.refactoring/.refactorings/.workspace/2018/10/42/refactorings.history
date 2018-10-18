@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;inet-framework-simulte-afd56c4/simulations/d2d/results&apos;" deleteContents="false" description="Delete resource &apos;inet-framework-simulte-afd56c4/simulations/d2d/results&apos;" element1="/inet-framework-simulte-afd56c4/simulations/d2d/results" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1539726448543"/>
+</session>
