@@ -25,6 +25,7 @@ import lte.stack.phy.LteNicUeD2D;
 import inet.power.contract.IEnergyStorage; 
 import inet.power.contract.IEnergyGenerator; 
 import inet.common.lifecycle.NodeStatus; 
+import inet.power.contract.IEnergyConsumer;
 //JINSERT
 // 
 // User Equipment Module
@@ -57,11 +58,12 @@ module Ue
         *.interfaceTableModule = default(absPath(".interfaceTable"));
         *.routingTableModule = default(absPath(".routingTable"));
 
-		//# JINSERT
+		//# Energy capability //JINSERT
 		bool hasStatus = default(false);
 		string energyStorageType = default("");
         string energyGeneratorType = default("");
         *.energySourceModule = default(energyStorageType != "" ? absPath(".energyStorage") : "");
+        string energyConsumerType = default(""); // NED type of the energy consumer model
 
     gates:
         input radioIn @directIn;     // connection to master
@@ -107,8 +109,8 @@ module Ue
             parameters:
                 @display("p=250,258");
         }
-        // //JINSERT 
-
+      
+        // energy capability //JINSERT 
         status: NodeStatus if hasStatus {
             @display("p=49.068,225.504");
         }
@@ -119,6 +121,10 @@ module Ue
         energyGenerator: <energyGeneratorType> like IEnergyGenerator if energyGeneratorType != "" {
             parameters:
                 @display("p=49.068,280.836;i=block/plug;is=s");
+        }
+        energyConsumer: <energyConsumerType> like IEnergyConsumer if energyConsumerType != "" {
+            parameters:
+                @display("p=100,350");
         }
     connections allowunconnected:
         //# 

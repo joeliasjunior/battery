@@ -14,4 +14,16 @@
 		<item value="588" key="DIALOG_X_ORIGIN"/>
 		<item value="381" key="DIALOG_Y_ORIGIN"/>
 	</section>
+	<section name="org.omnetpp.scave.wizard.CsvExportWizard">
+		<item value="&quot;" key="quoteChar"/>
+		<item value="/home/joelias/Downloads/teste.csv" key="filename"/>
+		<item value="CR LF" key="eol"/>
+		<item value="true" key="groupBy.run"/>
+		<item value="true" key="groupBy.module"/>
+		<item value="false" key="groupBy.file"/>
+		<item value="18" key="precision"/>
+		<item value="false" key="groupBy.name"/>
+		<item value="true" key="header"/>
+		<item value="Comma" key="separator"/>
+	</section>
 </section>

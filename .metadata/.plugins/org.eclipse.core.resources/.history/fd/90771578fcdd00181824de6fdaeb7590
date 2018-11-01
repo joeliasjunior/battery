@@ -1,0 +1,1566 @@
+                                                                
+version 2
+run MultiplePairs-UDP-D2D-0-20181101-14:33:14-32717
+attr configname MultiplePairs-UDP-D2D
+attr datetime 20181101-14:33:14
+attr experiment MultiplePairs-UDP-D2D
+attr inifile AlternatingEnergyConsumer.ini
+attr iterationvars $numPairs=20
+attr iterationvars2 "$numPairs=20, $repetition=0"
+attr measurement $numPairs=20
+attr network lte.simulations.networks.SingleCell_D2D
+attr numPairs 20
+attr processid 32717
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+param **.**.amcMode "\"AUTO\""
+param **.amcMode "\"D2D\""
+param **.channelControl.alpha 1.0
+param **.channelControl.carrierFrequency 2100e+6Hz
+param **.channelControl.pMax 10W
+param **.d2dCqi 7
+param **.deployer.numRbDl 50
+param **.deployer.numRbUl 50
+param **.energyConsumer.consumptionInterval 1s
+param **.energyConsumer.powerConsumption 10mW
+param **.energyConsumer.sleepInterval 0.5s
+param **.energyConsumerType "\"AlternatingEnergyConsumer\""
+param **.energyGenerator.energySinkModule "\"^.energyStorage\""
+param **.energyGenerator.generationInterval exponential(10s)
+param **.energyGenerator.powerGeneration 0mW
+param **.energyGenerator.sleepInterval exponential(10s)
+param **.energyGeneratorType "\"AlternatingEnergyGenerator\""
+param **.energyStorage.initialCapacity "uniform(0J, this.nominalCapacity)"
+param **.energyStorage.nodeShutdownCapacity 0J
+param **.energyStorage.nodeStartCapacity "0.5 * this.nominalCapacity"
+param **.energyStorage.nominalCapacity 0.05J
+param **.energyStorageType "\"SimpleEnergyStorage\""
+param **.fbDelay 1
+param **.feedbackComputation "xmldoc(\"config_channel.xml\")"
+param **.hasStatus true
+param **.mobility.constraintAreaMaxZ 0m
+param **.mobility.constraintAreaMinZ 0m
+param **.nic.phy.channelModel "xmldoc(\"config_channel.xml\")"
+param **.numBands 50
+param **.rbAllocationType "\"localized\""
+param **.routingRecorder.enabled false
+param **.usePreconfiguredTxParams false
+param *.eNodeB.d2dCapable false
+param *.eNodeB.mobility.initFromDisplayString false
+param *.eNodeB.mobility.initialX 300m
+param *.eNodeB.mobility.initialY 300m
+param *.eNodeB.nic.phy.enableD2DCqiReporting true
+param *.numUeCell 0
+param *.numUeD2DRx ${numPairs}
+param *.numUeD2DTx ${numPairs=20}
+param *.ue*[*].macCellId 1
+param *.ue*[*].masterId 1
+param *.ue*[*].mobility.initFromDisplayString false
+param *.ueD2D*[*].d2dCapable true
+param *.ueD2D*[*].mobility.initialX uniform(290m,310m)
+param *.ueD2D*[*].mobility.initialY uniform(340m,350m)
+param *.ueD2D*[*].numUdpApps 1
+param *.ueD2D*[0].d2dCapable false
+param *.ueD2DRx[*].udpApp[*].localPort 1000
+param *.ueD2DRx[*].udpApp[*].typename "\"VoIPReceiver\""
+param *.ueD2DTx[*].nic.d2dPeerAddresses "\"ueD2DRx[\" + string(ancestorIndex(1)) + \"]\""
+param *.ueD2DTx[*].udpApp[*].destAddress "\"ueD2DRx[\" + string(ancestorIndex(1)) + \"]\""
+param *.ueD2DTx[*].udpApp[*].destPort 1000
+param *.ueD2DTx[*].udpApp[*].localPort 3088+ancestorIndex(0)
+param *.ueD2DTx[*].udpApp[*].startTime uniform(0s,0.02s)
+param *.ueD2DTx[*].udpApp[*].typename "\"VoIPSender\""
+
+vector 2  SingleCell_D2D.server.energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1  SingleCell_D2D.server.energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 3  SingleCell_D2D.server.energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 12  SingleCell_D2D.server.ppp[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 13  SingleCell_D2D.server.ppp[0].ppp  txState:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "tx state, vector"
+vector 22  SingleCell_D2D.router.energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 21  SingleCell_D2D.router.energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 23  SingleCell_D2D.router.energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 32  SingleCell_D2D.router.ppp[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 33  SingleCell_D2D.router.ppp[0].ppp  txState:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "tx state, vector"
+vector 43  SingleCell_D2D.router.ppp[1].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 44  SingleCell_D2D.router.ppp[1].ppp  txState:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "tx state, vector"
+vector 53  SingleCell_D2D.pgw.energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 52  SingleCell_D2D.pgw.energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 54  SingleCell_D2D.pgw.energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 68  SingleCell_D2D.pgw.ppp[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 69  SingleCell_D2D.pgw.ppp[0].ppp  txState:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "tx state, vector"
+vector 79  SingleCell_D2D.pgw.pppInterface.queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 80  SingleCell_D2D.pgw.pppInterface.ppp  txState:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "tx state, vector"
+vector 107  SingleCell_D2D.eNodeB.ppp.queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 108  SingleCell_D2D.eNodeB.ppp.ppp  txState:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "tx state, vector"
+vector 125  SingleCell_D2D.ueD2DTx[0].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 124  SingleCell_D2D.ueD2DTx[0].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 126  SingleCell_D2D.ueD2DTx[0].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 123  SingleCell_D2D.ueD2DTx[0].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 127  SingleCell_D2D.ueD2DTx[0].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 151  SingleCell_D2D.ueD2DTx[1].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 150  SingleCell_D2D.ueD2DTx[1].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 152  SingleCell_D2D.ueD2DTx[1].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 149  SingleCell_D2D.ueD2DTx[1].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 153  SingleCell_D2D.ueD2DTx[1].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 177  SingleCell_D2D.ueD2DTx[2].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 176  SingleCell_D2D.ueD2DTx[2].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 178  SingleCell_D2D.ueD2DTx[2].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 175  SingleCell_D2D.ueD2DTx[2].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 179  SingleCell_D2D.ueD2DTx[2].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 203  SingleCell_D2D.ueD2DTx[3].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 202  SingleCell_D2D.ueD2DTx[3].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 204  SingleCell_D2D.ueD2DTx[3].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 201  SingleCell_D2D.ueD2DTx[3].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 205  SingleCell_D2D.ueD2DTx[3].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 229  SingleCell_D2D.ueD2DTx[4].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 228  SingleCell_D2D.ueD2DTx[4].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 230  SingleCell_D2D.ueD2DTx[4].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 227  SingleCell_D2D.ueD2DTx[4].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 231  SingleCell_D2D.ueD2DTx[4].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 255  SingleCell_D2D.ueD2DTx[5].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 254  SingleCell_D2D.ueD2DTx[5].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 256  SingleCell_D2D.ueD2DTx[5].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 253  SingleCell_D2D.ueD2DTx[5].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 257  SingleCell_D2D.ueD2DTx[5].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 281  SingleCell_D2D.ueD2DTx[6].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 280  SingleCell_D2D.ueD2DTx[6].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 282  SingleCell_D2D.ueD2DTx[6].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 279  SingleCell_D2D.ueD2DTx[6].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 283  SingleCell_D2D.ueD2DTx[6].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 307  SingleCell_D2D.ueD2DTx[7].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 306  SingleCell_D2D.ueD2DTx[7].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 308  SingleCell_D2D.ueD2DTx[7].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 305  SingleCell_D2D.ueD2DTx[7].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 309  SingleCell_D2D.ueD2DTx[7].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 333  SingleCell_D2D.ueD2DTx[8].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 332  SingleCell_D2D.ueD2DTx[8].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 334  SingleCell_D2D.ueD2DTx[8].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 331  SingleCell_D2D.ueD2DTx[8].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 335  SingleCell_D2D.ueD2DTx[8].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 359  SingleCell_D2D.ueD2DTx[9].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 358  SingleCell_D2D.ueD2DTx[9].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 360  SingleCell_D2D.ueD2DTx[9].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 357  SingleCell_D2D.ueD2DTx[9].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 361  SingleCell_D2D.ueD2DTx[9].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 385  SingleCell_D2D.ueD2DTx[10].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 384  SingleCell_D2D.ueD2DTx[10].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 386  SingleCell_D2D.ueD2DTx[10].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 383  SingleCell_D2D.ueD2DTx[10].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 387  SingleCell_D2D.ueD2DTx[10].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 411  SingleCell_D2D.ueD2DTx[11].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 410  SingleCell_D2D.ueD2DTx[11].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 412  SingleCell_D2D.ueD2DTx[11].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 409  SingleCell_D2D.ueD2DTx[11].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 413  SingleCell_D2D.ueD2DTx[11].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 437  SingleCell_D2D.ueD2DTx[12].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 436  SingleCell_D2D.ueD2DTx[12].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 438  SingleCell_D2D.ueD2DTx[12].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 435  SingleCell_D2D.ueD2DTx[12].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 439  SingleCell_D2D.ueD2DTx[12].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 463  SingleCell_D2D.ueD2DTx[13].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 462  SingleCell_D2D.ueD2DTx[13].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 464  SingleCell_D2D.ueD2DTx[13].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 461  SingleCell_D2D.ueD2DTx[13].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 465  SingleCell_D2D.ueD2DTx[13].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 489  SingleCell_D2D.ueD2DTx[14].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 488  SingleCell_D2D.ueD2DTx[14].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 490  SingleCell_D2D.ueD2DTx[14].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 487  SingleCell_D2D.ueD2DTx[14].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 491  SingleCell_D2D.ueD2DTx[14].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 515  SingleCell_D2D.ueD2DTx[15].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 514  SingleCell_D2D.ueD2DTx[15].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 516  SingleCell_D2D.ueD2DTx[15].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 513  SingleCell_D2D.ueD2DTx[15].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 517  SingleCell_D2D.ueD2DTx[15].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 541  SingleCell_D2D.ueD2DTx[16].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 540  SingleCell_D2D.ueD2DTx[16].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 542  SingleCell_D2D.ueD2DTx[16].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 539  SingleCell_D2D.ueD2DTx[16].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 543  SingleCell_D2D.ueD2DTx[16].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 567  SingleCell_D2D.ueD2DTx[17].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 566  SingleCell_D2D.ueD2DTx[17].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 568  SingleCell_D2D.ueD2DTx[17].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 565  SingleCell_D2D.ueD2DTx[17].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 569  SingleCell_D2D.ueD2DTx[17].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 593  SingleCell_D2D.ueD2DTx[18].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 592  SingleCell_D2D.ueD2DTx[18].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 594  SingleCell_D2D.ueD2DTx[18].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 591  SingleCell_D2D.ueD2DTx[18].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 595  SingleCell_D2D.ueD2DTx[18].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 619  SingleCell_D2D.ueD2DTx[19].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 618  SingleCell_D2D.ueD2DTx[19].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 620  SingleCell_D2D.ueD2DTx[19].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 617  SingleCell_D2D.ueD2DTx[19].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 621  SingleCell_D2D.ueD2DTx[19].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 652  SingleCell_D2D.ueD2DRx[0].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 651  SingleCell_D2D.ueD2DRx[0].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 653  SingleCell_D2D.ueD2DRx[0].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 650  SingleCell_D2D.ueD2DRx[0].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 654  SingleCell_D2D.ueD2DRx[0].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 685  SingleCell_D2D.ueD2DRx[1].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 684  SingleCell_D2D.ueD2DRx[1].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 686  SingleCell_D2D.ueD2DRx[1].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 683  SingleCell_D2D.ueD2DRx[1].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 687  SingleCell_D2D.ueD2DRx[1].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 718  SingleCell_D2D.ueD2DRx[2].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 717  SingleCell_D2D.ueD2DRx[2].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 719  SingleCell_D2D.ueD2DRx[2].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 716  SingleCell_D2D.ueD2DRx[2].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 720  SingleCell_D2D.ueD2DRx[2].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 751  SingleCell_D2D.ueD2DRx[3].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 750  SingleCell_D2D.ueD2DRx[3].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 752  SingleCell_D2D.ueD2DRx[3].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 749  SingleCell_D2D.ueD2DRx[3].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 753  SingleCell_D2D.ueD2DRx[3].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 784  SingleCell_D2D.ueD2DRx[4].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 783  SingleCell_D2D.ueD2DRx[4].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 785  SingleCell_D2D.ueD2DRx[4].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 782  SingleCell_D2D.ueD2DRx[4].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 786  SingleCell_D2D.ueD2DRx[4].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 817  SingleCell_D2D.ueD2DRx[5].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 816  SingleCell_D2D.ueD2DRx[5].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 818  SingleCell_D2D.ueD2DRx[5].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 815  SingleCell_D2D.ueD2DRx[5].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 819  SingleCell_D2D.ueD2DRx[5].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 850  SingleCell_D2D.ueD2DRx[6].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 849  SingleCell_D2D.ueD2DRx[6].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 851  SingleCell_D2D.ueD2DRx[6].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 848  SingleCell_D2D.ueD2DRx[6].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 852  SingleCell_D2D.ueD2DRx[6].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 883  SingleCell_D2D.ueD2DRx[7].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 882  SingleCell_D2D.ueD2DRx[7].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 884  SingleCell_D2D.ueD2DRx[7].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 881  SingleCell_D2D.ueD2DRx[7].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 885  SingleCell_D2D.ueD2DRx[7].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 916  SingleCell_D2D.ueD2DRx[8].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 915  SingleCell_D2D.ueD2DRx[8].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 917  SingleCell_D2D.ueD2DRx[8].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 914  SingleCell_D2D.ueD2DRx[8].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 918  SingleCell_D2D.ueD2DRx[8].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 949  SingleCell_D2D.ueD2DRx[9].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 948  SingleCell_D2D.ueD2DRx[9].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 950  SingleCell_D2D.ueD2DRx[9].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 947  SingleCell_D2D.ueD2DRx[9].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 951  SingleCell_D2D.ueD2DRx[9].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 982  SingleCell_D2D.ueD2DRx[10].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 981  SingleCell_D2D.ueD2DRx[10].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 983  SingleCell_D2D.ueD2DRx[10].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 980  SingleCell_D2D.ueD2DRx[10].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 984  SingleCell_D2D.ueD2DRx[10].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1015  SingleCell_D2D.ueD2DRx[11].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1014  SingleCell_D2D.ueD2DRx[11].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1016  SingleCell_D2D.ueD2DRx[11].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1013  SingleCell_D2D.ueD2DRx[11].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1017  SingleCell_D2D.ueD2DRx[11].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1048  SingleCell_D2D.ueD2DRx[12].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1047  SingleCell_D2D.ueD2DRx[12].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1049  SingleCell_D2D.ueD2DRx[12].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1046  SingleCell_D2D.ueD2DRx[12].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1050  SingleCell_D2D.ueD2DRx[12].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1081  SingleCell_D2D.ueD2DRx[13].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1080  SingleCell_D2D.ueD2DRx[13].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1082  SingleCell_D2D.ueD2DRx[13].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1079  SingleCell_D2D.ueD2DRx[13].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1083  SingleCell_D2D.ueD2DRx[13].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1114  SingleCell_D2D.ueD2DRx[14].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1113  SingleCell_D2D.ueD2DRx[14].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1115  SingleCell_D2D.ueD2DRx[14].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1112  SingleCell_D2D.ueD2DRx[14].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1116  SingleCell_D2D.ueD2DRx[14].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1147  SingleCell_D2D.ueD2DRx[15].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1146  SingleCell_D2D.ueD2DRx[15].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1148  SingleCell_D2D.ueD2DRx[15].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1145  SingleCell_D2D.ueD2DRx[15].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1149  SingleCell_D2D.ueD2DRx[15].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1180  SingleCell_D2D.ueD2DRx[16].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1179  SingleCell_D2D.ueD2DRx[16].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1181  SingleCell_D2D.ueD2DRx[16].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1178  SingleCell_D2D.ueD2DRx[16].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1182  SingleCell_D2D.ueD2DRx[16].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1213  SingleCell_D2D.ueD2DRx[17].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1212  SingleCell_D2D.ueD2DRx[17].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1214  SingleCell_D2D.ueD2DRx[17].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1211  SingleCell_D2D.ueD2DRx[17].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1215  SingleCell_D2D.ueD2DRx[17].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1246  SingleCell_D2D.ueD2DRx[18].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1245  SingleCell_D2D.ueD2DRx[18].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1247  SingleCell_D2D.ueD2DRx[18].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1244  SingleCell_D2D.ueD2DRx[18].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1248  SingleCell_D2D.ueD2DRx[18].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1279  SingleCell_D2D.ueD2DRx[19].energyStorage  residualCapacity:vector  ETV
+attr interpolationmode  linear
+attr source  residualCapacityChanged
+attr title  "Residual capacity, vector"
+vector 1278  SingleCell_D2D.ueD2DRx[19].energyStorage  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1280  SingleCell_D2D.ueD2DRx[19].energyGenerator  powerGeneration:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerGenerationChanged
+attr title  "Power generation, vector"
+vector 1277  SingleCell_D2D.ueD2DRx[19].energyStorage  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 1281  SingleCell_D2D.ueD2DRx[19].energyConsumer  powerConsumption:vector  ETV
+attr interpolationmode  sample-hold
+attr source  powerConsumptionChanged
+attr title  "Power consumption, vector"
+vector 482  SingleCell_D2D.ueD2DTx[14].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 508  SingleCell_D2D.ueD2DTx[15].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 612  SingleCell_D2D.ueD2DTx[19].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 492  SingleCell_D2D.ueD2DTx[14].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 495  SingleCell_D2D.ueD2DTx[14].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 518  SingleCell_D2D.ueD2DTx[15].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 521  SingleCell_D2D.ueD2DTx[15].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 622  SingleCell_D2D.ueD2DTx[19].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 625  SingleCell_D2D.ueD2DTx[19].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 496  SingleCell_D2D.ueD2DTx[14].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 522  SingleCell_D2D.ueD2DTx[15].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 626  SingleCell_D2D.ueD2DTx[19].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 499  SingleCell_D2D.ueD2DTx[14].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 525  SingleCell_D2D.ueD2DTx[15].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 629  SingleCell_D2D.ueD2DTx[19].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 97  SingleCell_D2D.eNodeB.nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 99  SingleCell_D2D.eNodeB.nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 497  SingleCell_D2D.ueD2DTx[14].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 523  SingleCell_D2D.ueD2DTx[15].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 627  SingleCell_D2D.ueD2DTx[19].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 300  SingleCell_D2D.ueD2DTx[7].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 310  SingleCell_D2D.ueD2DTx[7].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 313  SingleCell_D2D.ueD2DTx[7].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 314  SingleCell_D2D.ueD2DTx[7].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 317  SingleCell_D2D.ueD2DTx[7].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 170  SingleCell_D2D.ueD2DTx[2].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 196  SingleCell_D2D.ueD2DTx[3].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 352  SingleCell_D2D.ueD2DTx[9].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 534  SingleCell_D2D.ueD2DTx[16].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 586  SingleCell_D2D.ueD2DTx[18].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 180  SingleCell_D2D.ueD2DTx[2].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 183  SingleCell_D2D.ueD2DTx[2].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 206  SingleCell_D2D.ueD2DTx[3].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 209  SingleCell_D2D.ueD2DTx[3].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 362  SingleCell_D2D.ueD2DTx[9].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 365  SingleCell_D2D.ueD2DTx[9].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 544  SingleCell_D2D.ueD2DTx[16].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 547  SingleCell_D2D.ueD2DTx[16].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 596  SingleCell_D2D.ueD2DTx[18].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 599  SingleCell_D2D.ueD2DTx[18].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 184  SingleCell_D2D.ueD2DTx[2].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 210  SingleCell_D2D.ueD2DTx[3].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 366  SingleCell_D2D.ueD2DTx[9].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 548  SingleCell_D2D.ueD2DTx[16].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 600  SingleCell_D2D.ueD2DTx[18].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 187  SingleCell_D2D.ueD2DTx[2].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 213  SingleCell_D2D.ueD2DTx[3].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 369  SingleCell_D2D.ueD2DTx[9].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 551  SingleCell_D2D.ueD2DTx[16].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 603  SingleCell_D2D.ueD2DTx[18].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 326  SingleCell_D2D.ueD2DTx[8].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 336  SingleCell_D2D.ueD2DTx[8].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 339  SingleCell_D2D.ueD2DTx[8].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 340  SingleCell_D2D.ueD2DTx[8].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 343  SingleCell_D2D.ueD2DTx[8].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 102  SingleCell_D2D.eNodeB.nic.phy  averageCqiUlvect:vector  ETV
+attr source  averageCqiUlvect
+attr title  "Average Cqi reported in UL, vector"
+attr unit  cqi
+vector 315  SingleCell_D2D.ueD2DTx[7].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 185  SingleCell_D2D.ueD2DTx[2].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 211  SingleCell_D2D.ueD2DTx[3].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 367  SingleCell_D2D.ueD2DTx[9].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 549  SingleCell_D2D.ueD2DTx[16].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 601  SingleCell_D2D.ueD2DTx[18].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 430  SingleCell_D2D.ueD2DTx[12].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 440  SingleCell_D2D.ueD2DTx[12].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 443  SingleCell_D2D.ueD2DTx[12].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 444  SingleCell_D2D.ueD2DTx[12].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 447  SingleCell_D2D.ueD2DTx[12].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 341  SingleCell_D2D.ueD2DTx[8].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 248  SingleCell_D2D.ueD2DTx[5].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 258  SingleCell_D2D.ueD2DTx[5].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 261  SingleCell_D2D.ueD2DTx[5].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 262  SingleCell_D2D.ueD2DTx[5].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 100  SingleCell_D2D.eNodeB.nic.mac  measuredItbs:vector  ETV
+attr source  measuredItbs
+attr title  "TBS index, vector"
+attr unit  ""
+vector 265  SingleCell_D2D.ueD2DTx[5].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 222  SingleCell_D2D.ueD2DTx[4].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 232  SingleCell_D2D.ueD2DTx[4].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 235  SingleCell_D2D.ueD2DTx[4].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 236  SingleCell_D2D.ueD2DTx[4].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 239  SingleCell_D2D.ueD2DTx[4].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 445  SingleCell_D2D.ueD2DTx[12].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 628  SingleCell_D2D.ueD2DTx[19].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 263  SingleCell_D2D.ueD2DTx[5].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 144  SingleCell_D2D.ueD2DTx[1].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 154  SingleCell_D2D.ueD2DTx[1].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 157  SingleCell_D2D.ueD2DTx[1].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 158  SingleCell_D2D.ueD2DTx[1].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 161  SingleCell_D2D.ueD2DTx[1].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 1293  SingleCell_D2D.ueD2DRx[19].nic.phy  averageCqiD2Dvect:vector  ETV
+attr source  averageCqiD2Dvect
+attr title  "Average Cqi reported in D2D, vector"
+attr unit  cqi
+vector 1287  SingleCell_D2D.ueD2DRx[19].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 237  SingleCell_D2D.ueD2DTx[4].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 560  SingleCell_D2D.ueD2DTx[17].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 570  SingleCell_D2D.ueD2DTx[17].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 573  SingleCell_D2D.ueD2DTx[17].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 574  SingleCell_D2D.ueD2DTx[17].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 316  SingleCell_D2D.ueD2DTx[7].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 577  SingleCell_D2D.ueD2DTx[17].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 159  SingleCell_D2D.ueD2DTx[1].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 274  SingleCell_D2D.ueD2DTx[6].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 456  SingleCell_D2D.ueD2DTx[13].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 284  SingleCell_D2D.ueD2DTx[6].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 287  SingleCell_D2D.ueD2DTx[6].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 466  SingleCell_D2D.ueD2DTx[13].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 469  SingleCell_D2D.ueD2DTx[13].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 288  SingleCell_D2D.ueD2DTx[6].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 470  SingleCell_D2D.ueD2DTx[13].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 291  SingleCell_D2D.ueD2DTx[6].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 473  SingleCell_D2D.ueD2DTx[13].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 602  SingleCell_D2D.ueD2DTx[18].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 1289  SingleCell_D2D.ueD2DRx[19].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 1288  SingleCell_D2D.ueD2DRx[19].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 1283  SingleCell_D2D.ueD2DRx[19].nic.pdcpRrc  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 1284  SingleCell_D2D.ueD2DRx[19].nic.pdcpRrc  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 1273  SingleCell_D2D.ueD2DRx[19].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 1274  SingleCell_D2D.ueD2DRx[19].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 1271  SingleCell_D2D.ueD2DRx[19].udpApp[0]  voipReceivedThroughtput:vector  ETV
+attr source  voipReceivedThroughtput
+attr title  "Throughput received at the application level, vector"
+attr unit  Bps
+vector 897  SingleCell_D2D.ueD2DRx[7].nic.phy  averageCqiD2Dvect:vector  ETV
+attr source  averageCqiD2Dvect
+attr title  "Average Cqi reported in D2D, vector"
+attr unit  cqi
+vector 891  SingleCell_D2D.ueD2DRx[7].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 378  SingleCell_D2D.ueD2DTx[10].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 388  SingleCell_D2D.ueD2DTx[10].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 391  SingleCell_D2D.ueD2DTx[10].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 392  SingleCell_D2D.ueD2DTx[10].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 395  SingleCell_D2D.ueD2DTx[10].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 1260  SingleCell_D2D.ueD2DRx[18].nic.phy  averageCqiD2Dvect:vector  ETV
+attr source  averageCqiD2Dvect
+attr title  "Average Cqi reported in D2D, vector"
+attr unit  cqi
+vector 1254  SingleCell_D2D.ueD2DRx[18].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 575  SingleCell_D2D.ueD2DTx[17].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 289  SingleCell_D2D.ueD2DTx[6].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 471  SingleCell_D2D.ueD2DTx[13].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 893  SingleCell_D2D.ueD2DRx[7].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 892  SingleCell_D2D.ueD2DRx[7].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 887  SingleCell_D2D.ueD2DRx[7].nic.pdcpRrc  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 888  SingleCell_D2D.ueD2DRx[7].nic.pdcpRrc  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 877  SingleCell_D2D.ueD2DRx[7].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 878  SingleCell_D2D.ueD2DRx[7].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 875  SingleCell_D2D.ueD2DRx[7].udpApp[0]  voipReceivedThroughtput:vector  ETV
+attr source  voipReceivedThroughtput
+attr title  "Throughput received at the application level, vector"
+attr unit  Bps
+vector 393  SingleCell_D2D.ueD2DTx[10].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 118  SingleCell_D2D.ueD2DTx[0].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 128  SingleCell_D2D.ueD2DTx[0].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 131  SingleCell_D2D.ueD2DTx[0].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 132  SingleCell_D2D.ueD2DTx[0].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 135  SingleCell_D2D.ueD2DTx[0].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 1256  SingleCell_D2D.ueD2DRx[18].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 1255  SingleCell_D2D.ueD2DRx[18].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 1250  SingleCell_D2D.ueD2DRx[18].nic.pdcpRrc  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 1251  SingleCell_D2D.ueD2DRx[18].nic.pdcpRrc  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 1240  SingleCell_D2D.ueD2DRx[18].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 1241  SingleCell_D2D.ueD2DRx[18].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 1238  SingleCell_D2D.ueD2DRx[18].udpApp[0]  voipReceivedThroughtput:vector  ETV
+attr source  voipReceivedThroughtput
+attr title  "Throughput received at the application level, vector"
+attr unit  Bps
+vector 404  SingleCell_D2D.ueD2DTx[11].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 414  SingleCell_D2D.ueD2DTx[11].nic.pdcpRrc  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 417  SingleCell_D2D.ueD2DTx[11].nic.pdcpRrc  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 418  SingleCell_D2D.ueD2DTx[11].nic.mac  receivedPacketFromUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromUpperLayer
+vector 421  SingleCell_D2D.ueD2DTx[11].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 133  SingleCell_D2D.ueD2DTx[0].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 419  SingleCell_D2D.ueD2DTx[11].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 472  SingleCell_D2D.ueD2DTx[13].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 1095  SingleCell_D2D.ueD2DRx[13].nic.phy  averageCqiD2Dvect:vector  ETV
+attr source  averageCqiD2Dvect
+attr title  "Average Cqi reported in D2D, vector"
+attr unit  cqi
+vector 1089  SingleCell_D2D.ueD2DRx[13].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 160  SingleCell_D2D.ueD2DTx[1].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 1091  SingleCell_D2D.ueD2DRx[13].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 1090  SingleCell_D2D.ueD2DRx[13].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 1085  SingleCell_D2D.ueD2DRx[13].nic.pdcpRrc  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 1086  SingleCell_D2D.ueD2DRx[13].nic.pdcpRrc  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 1075  SingleCell_D2D.ueD2DRx[13].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 1076  SingleCell_D2D.ueD2DRx[13].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 1073  SingleCell_D2D.ueD2DRx[13].udpApp[0]  voipReceivedThroughtput:vector  ETV
+attr source  voipReceivedThroughtput
+attr title  "Throughput received at the application level, vector"
+attr unit  Bps
+vector 342  SingleCell_D2D.ueD2DTx[8].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 699  SingleCell_D2D.ueD2DRx[1].nic.phy  averageCqiD2Dvect:vector  ETV
+attr source  averageCqiD2Dvect
+attr title  "Average Cqi reported in D2D, vector"
+attr unit  cqi
+vector 693  SingleCell_D2D.ueD2DRx[1].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 290  SingleCell_D2D.ueD2DTx[6].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 930  SingleCell_D2D.ueD2DRx[8].nic.phy  averageCqiD2Dvect:vector  ETV
+attr source  averageCqiD2Dvect
+attr title  "Average Cqi reported in D2D, vector"
+attr unit  cqi
+vector 924  SingleCell_D2D.ueD2DRx[8].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 864  SingleCell_D2D.ueD2DRx[6].nic.phy  averageCqiD2Dvect:vector  ETV
+attr source  averageCqiD2Dvect
+attr title  "Average Cqi reported in D2D, vector"
+attr unit  cqi
+vector 858  SingleCell_D2D.ueD2DRx[6].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 446  SingleCell_D2D.ueD2DTx[12].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 695  SingleCell_D2D.ueD2DRx[1].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 694  SingleCell_D2D.ueD2DRx[1].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 689  SingleCell_D2D.ueD2DRx[1].nic.pdcpRrc  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 690  SingleCell_D2D.ueD2DRx[1].nic.pdcpRrc  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 679  SingleCell_D2D.ueD2DRx[1].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 680  SingleCell_D2D.ueD2DRx[1].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 677  SingleCell_D2D.ueD2DRx[1].udpApp[0]  voipReceivedThroughtput:vector  ETV
+attr source  voipReceivedThroughtput
+attr title  "Throughput received at the application level, vector"
+attr unit  Bps
+vector 926  SingleCell_D2D.ueD2DRx[8].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 925  SingleCell_D2D.ueD2DRx[8].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 920  SingleCell_D2D.ueD2DRx[8].nic.pdcpRrc  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 921  SingleCell_D2D.ueD2DRx[8].nic.pdcpRrc  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 910  SingleCell_D2D.ueD2DRx[8].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 911  SingleCell_D2D.ueD2DRx[8].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 908  SingleCell_D2D.ueD2DRx[8].udpApp[0]  voipReceivedThroughtput:vector  ETV
+attr source  voipReceivedThroughtput
+attr title  "Throughput received at the application level, vector"
+attr unit  Bps
+vector 1062  SingleCell_D2D.ueD2DRx[12].nic.phy  averageCqiD2Dvect:vector  ETV
+attr source  averageCqiD2Dvect
+attr title  "Average Cqi reported in D2D, vector"
+attr unit  cqi
+vector 1056  SingleCell_D2D.ueD2DRx[12].nic.mac  receivedPacketFromLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  receivedPacketFromLowerLayer
+vector 860  SingleCell_D2D.ueD2DRx[6].nic.mac  sentPacketToLowerLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToLowerLayer
+vector 859  SingleCell_D2D.ueD2DRx[6].nic.mac  sentPacketToUpperLayer:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPacketToUpperLayer
+vector 854  SingleCell_D2
