@@ -25,7 +25,8 @@ import lte.stack.phy.LteNicUeD2D;
 import inet.power.contract.IEnergyStorage; 
 import inet.power.contract.IEnergyGenerator; 
 import inet.common.lifecycle.NodeStatus; 
-import inet.power.contract.IEnergyConsumer;
+import lte.power.contract.IEnergyConsumer_SimuLTE;
+import lte.power.battery.BatteryAccess;
 //JINSERT
 // 
 // User Equipment Module
@@ -63,7 +64,7 @@ module Ue
 		string energyStorageType = default("");
         string energyGeneratorType = default("");
         *.energySourceModule = default(energyStorageType != "" ? absPath(".energyStorage") : "");
-        string energyConsumerType = default(""); // NED type of the energy consumer model
+//        string energyConsumerType = default(""); // NED type of the energy consumer model
 
     gates:
         input radioIn @directIn;     // connection to master
@@ -111,9 +112,18 @@ module Ue
         }
       
         // energy capability //JINSERT 
-        status: NodeStatus if hasStatus {
-            @display("p=49.068,225.504");
-        }
+//        status: NodeStatus if hasStatus { //HostState
+//            @display("p=49.068,225.504");
+//        }
+		batteryModule: BatteryAccess{ //JINSERT
+			parameters:
+				@display("p=49.068,225.504");
+		}
+
+//		battery: SimpleBattery{ //JINSERT
+//			parameters:
+//				@display("p=49.068,225.504;i=block/plug,#FF8000");
+//		}
         energyStorage: <energyStorageType> like IEnergyStorage if energyStorageType != "" {
             parameters:
                 @display("p=49.068,335.124;i=block/plug;is=s");
@@ -122,10 +132,10 @@ module Ue
             parameters:
                 @display("p=49.068,280.836;i=block/plug;is=s");
         }
-        energyConsumer: <energyConsumerType> like IEnergyConsumer if energyConsumerType != "" {
-            parameters:
-                @display("p=100,350");
-        }
+//        energyConsumer: <energyConsumerType> like IEnergyConsumer_SimuLTE if energyConsumerType != "" {
+//            parameters:
+//                @display("p=100,350");
+//        }
     connections allowunconnected:
         //# 
         //# Internal TCP/UDP applications connections with IP stack

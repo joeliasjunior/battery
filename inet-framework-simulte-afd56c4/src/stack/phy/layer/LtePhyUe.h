@@ -86,8 +86,8 @@ class LtePhyUe : public LtePhyBase
 
     /** set to false if a battery is not present in module or must have infinite capacity */
     bool useBattery_;
-    double txAmount_;    // drawn current amount for tx operations (mA)
-    double rxAmount_;    // drawn current amount for rx operations (mA)
+    double txAmount_ = 30;  //JINSERT    // drawn current amount for tx operations (mA)
+    double rxAmount_ = 25;  //JINSERT  // drawn current amount for rx operations (mA)
 
     LteMacUe *mac_;
     LteRlcUm *rlcUm_;
@@ -116,7 +116,7 @@ class LtePhyUe : public LtePhyBase
      * event to the blackboard. The event is caught by baseModule's receiveBBItem
      * which in turn calls handleHostState method, here inherited and redefined.
      */
-    //virtual void handleHostState(const HostState& state);
+    virtual void handleHostState(const HostState& state);
     /**
      * Utility function to update the hysteresis threshold using hysteresisFactor_.
      */

@@ -68,7 +68,8 @@ void LtePhyUeD2D::handleAirFrame(cMessage* msg)
 
     if (useBattery_)
     {
-        //TODO BatteryAccess::drawCurrent(rxAmount_, 0);
+        //TODO
+        BatteryAccess::drawCurrent(rxAmount_, 0); //JINSERT
     }
     connectedNodeId_ = masterId_;
     LteAirFrame* frame = check_and_cast<LteAirFrame*>(msg);
@@ -237,9 +238,10 @@ void LtePhyUeD2D::doHandover()
 
 void LtePhyUeD2D::handleUpperMessage(cMessage* msg)
 {
-//    if (useBattery_) {
-//    TODO     BatteryAccess::drawCurrent(txAmount_, 1);
-//    }
+    if (useBattery_) { //JINSERT
+    //TODO
+        BatteryAccess::drawCurrent(txAmount_, 1);
+    }
 
     UserControlInfo* lteInfo = check_and_cast<UserControlInfo*>(msg->removeControlInfo());
 

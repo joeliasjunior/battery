@@ -581,6 +581,11 @@
 <includePath path="/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src/inet/applications/dhcp"/>
 <includePath path="/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src/inet/applications/contract"/>
 <includePath path="/home/joelias/Dropbox/UFF/Pesquisa/battery/inet/src/inet/applications/base"/>
+<includePath path="/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src/power"/>
+<includePath path="/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src/power/contract"/>
+<includePath path="/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src/power/base"/>
+<includePath path="/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src/power/energyconsumer"/>
+<includePath path="/home/joelias/Dropbox/UFF/Pesquisa/battery/inet-framework-simulte-afd56c4/src/power/battery"/>
 <definedSymbol symbol="__STDC__=1"/>
 <definedSymbol symbol="__cplusplus=201402L"/>
 <definedSymbol symbol="__STDC_UTF_16__=1"/>

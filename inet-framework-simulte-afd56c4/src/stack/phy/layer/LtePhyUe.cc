@@ -48,8 +48,8 @@ void LtePhyUe::initialize(int stage)
         handoverDelta_ = 0.00001;
         handoverLatency_ = par("handoverLatency").doubleValue();
 
-        // disabled
-        useBattery_ = false;
+        // disabled //enabled //JINSERT
+        useBattery_ = true;
 
         enableHandover_ = par("enableHandover");
         enableHandover_ = par("enableHandover"); // TODO : USE IT
@@ -76,12 +76,13 @@ void LtePhyUe::initialize(int stage)
         {
             // TODO register the device to the battery with two accounts, e.g. 0=tx and 1=rx
             // it only affects statistics
-            //registerWithBattery("LtePhy", 2);
-//            txAmount_ = par("batteryTxCurrentAmount");
-//            rxAmount_ = par("batteryRxCurrentAmount");
-//
-//            WATCH(txAmount_);
-//            WATCH(rxAmount_);
+            //JINSERT
+            registerWithBattery("LtePhy", 2);
+            txAmount_ = par("batteryTxCurrentAmount");
+            rxAmount_ = par("batteryRxCurrentAmount");
+
+            WATCH(txAmount_);
+            WATCH(rxAmount_);
         }
 
         txPower_ = ueTxPower_;
@@ -282,7 +283,8 @@ void LtePhyUe::handleAirFrame(cMessage* msg)
 
     if (useBattery_)
     {
-        //TODO BatteryAccess::drawCurrent(rxAmount_, 0);
+        //TODO
+        BatteryAccess::drawCurrent(rxAmount_, 0); //JINSERT
     }
     connectedNodeId_ = masterId_;
     LteAirFrame* frame = check_and_cast<LteAirFrame*>(msg);
@@ -407,9 +409,10 @@ void LtePhyUe::handleAirFrame(cMessage* msg)
 
 void LtePhyUe::handleUpperMessage(cMessage* msg)
 {
-//    if (useBattery_) {
-//    TODO     BatteryAccess::drawCurrent(txAmount_, 1);
-//    }
+    if (useBattery_) {
+    //TODO
+        BatteryAccess::drawCurrent(txAmount_, 1); //JINSERT
+    }
 
     UserControlInfo* lteInfo = check_and_cast<UserControlInfo*>(msg->getControlInfo());
     MacNodeId dest = lteInfo->getDestId();
@@ -443,27 +446,27 @@ void LtePhyUe::handleUpperMessage(cMessage* msg)
     LtePhyBase::handleUpperMessage(msg);
 }
 
-//void LtePhyUe::handleHostState(const HostState& state)  {
-//    /*
-//     * If a module is not using the battery, but it has a battery module,
-//     * battery capacity never decreases, neither at timeouts,
-//     * because a draw is never called and a draw amount for the device
-//     * is never set (devices[i].currentActivity stuck at -1). See simpleBattery.cc @ line 244.
-//     */
-//    if (state.get() == HostState::ACTIVE)
-//        return;
-//
-//    if (!useBattery_ && state.get() == HostState::FAILED) {
-//        EV << "Warning: host state failed at node " << getName() << " while not using a battery!";
-//        return;
-//    }
-//
-//    if (state.get() == HostState::FAILED) {
-//        //depleted battery
-//        EV << "Battery depleted at node" << getName() << " with id " << getId();
-//        //TODO: stop sending and receiving messages or just collect statistics?
-//    }
-//}
+void LtePhyUe::handleHostState(const HostState& state)  { //JINSERT
+    /*
+     * If a module is not using the battery, but it has a battery module,
+     * battery capacity never decreases, neither at timeouts,
+     * because a draw is never called and a draw amount for the device
+     * is never set (devices[i].currentActivity stuck at -1). See simpleBattery.cc @ line 244.
+     */
+    if (state.get() == HostState::ACTIVE)
+        return;
+
+    if (!useBattery_ && state.get() == HostState::FAILED) {
+        EV << "Warning: host state failed at node " << getName() << " while not using a battery!";
+        return;
+    }
+
+    if (state.get() == HostState::FAILED) {
+        //depleted battery
+        EV << "Battery depleted at node" << getName() << " with id " << getId();
+        //TODO: stop sending and receiving messages or just collect statistics?
+    }
+}
 
 double LtePhyUe::updateHysteresisTh(double v)
 {

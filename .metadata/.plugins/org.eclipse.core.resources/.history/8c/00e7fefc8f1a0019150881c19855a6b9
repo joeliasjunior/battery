@@ -1,0 +1,8 @@
+package lte.power.battery;
+
+moduleinterface IBatteryAccess
+{
+    parameters:
+        @display("i=block/plug");
+        int deviceID;
+}
